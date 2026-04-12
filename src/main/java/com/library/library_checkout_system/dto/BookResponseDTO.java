@@ -1,32 +1,28 @@
-package com.library.library_checkout_system.models;
+package com.library.library_checkout_system.dto;
 
 import com.library.library_checkout_system.enums.BookStatus;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "books")
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookResponseDTO {
+    @NotNull
     private Integer bookId;
-
-    @Column(name = "title", nullable = false)
+    @NotBlank
     private String title;
-
-    @Column(name = "author")
+    @NotBlank
     private String author;
-
-    @Column(name = "isbn", nullable = false)
+    @NotBlank
     private String isbn;
-
-    @ManyToOne
-    @JoinColumn(name = "memberId")
-    private Member member;
-
-    @Column(name = "status", nullable = false)
+    @NotNull
     private BookStatus status;
 
-    public Book() {}
+    public BookResponseDTO(Integer bookId, String title, String author, String isbn, BookStatus status) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.status = status;
+    }
 
     public Integer getBookId() {
         return bookId;
@@ -58,14 +54,6 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
     }
 
     public BookStatus getStatus() {

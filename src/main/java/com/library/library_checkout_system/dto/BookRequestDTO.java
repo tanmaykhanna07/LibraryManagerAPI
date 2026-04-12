@@ -1,0 +1,46 @@
+package com.library.library_checkout_system.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.springframework.beans.factory.annotation.Value;
+
+public class BookRequestDTO {
+    @NotBlank
+    private String title;
+    @NotBlank
+    private String author;
+    @NotBlank
+    @Size(min = 13, max = 13, message = "ISBN is always 13 characters long, check again")
+    private String isbn;
+
+    public BookRequestDTO(String title, String author, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+}
