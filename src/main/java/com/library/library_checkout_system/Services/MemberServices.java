@@ -7,6 +7,9 @@ import com.library.library_checkout_system.dto.MemberResponseDTO;
 import com.library.library_checkout_system.models.Member;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class MemberServices {
     private final MemberRepository memberRepository;
@@ -24,6 +27,14 @@ public class MemberServices {
         return convertToDTO(memberRepository.save(member));
     }
 
+    public List<MemberResponseDTO> getAllMembers(){
+        List<Member> rawMembers = memberRepository.findAll();
+
+        return rawMembers.stream()
+                .map(member -> convertToDTO(member))
+                .collect(Collectors.toList());
+    }
+
     private MemberResponseDTO convertToDTO(Member newMember){
         return new MemberResponseDTO(
                 newMember.getMemberId(),
@@ -33,3 +44,4 @@ public class MemberServices {
         );
     }
 }
+

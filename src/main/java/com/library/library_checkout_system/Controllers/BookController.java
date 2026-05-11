@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/libraryApi/books")
+@RequestMapping("/libraryApi")
 class BookController {
 
     private final BookServices bookServices;
     public BookController(BookServices bookServices){
         this.bookServices = bookServices;
     }
-    @PostMapping
+    @PostMapping("/newBook")
     public BookResponseDTO addBook(@Valid @RequestBody BookRequestDTO bookRequestDTO){
         return bookServices.addBook(bookRequestDTO);
     }

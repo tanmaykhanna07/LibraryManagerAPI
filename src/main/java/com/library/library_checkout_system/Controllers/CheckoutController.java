@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/libraryApi/checkout")
+@RequestMapping("/libraryApi")
 class CheckoutController {
     private final CheckoutService checkoutService;
 
@@ -18,9 +18,10 @@ class CheckoutController {
         this.checkoutService = checkoutService;
     }
 
-    @PostMapping
+    @PostMapping("/checkout")
     public CheckoutResponseDTO registerBook(@Valid @RequestBody CheckoutRequestDTO checkoutRequestDTO){
         return checkoutService.registerBook(checkoutRequestDTO);
     }
+
 
 }
